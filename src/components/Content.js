@@ -6,13 +6,15 @@ import Navbar from "./Navbar";
 
 const Content = () => {
   return (
-    <main className="flex-auto">
+    <main className="flex-auto overflow-y-auto">
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/search" element={<Search />} />
-        <Route exact path="/collection" element={<Collection />} />
-      </Routes>
+      <div className="px-8 pt-5">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/collection" element={<Collection />} />
+        </Routes>
+      </div>
     </main>
   );
 };
