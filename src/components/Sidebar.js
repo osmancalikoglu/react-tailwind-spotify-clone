@@ -1,10 +1,14 @@
 import { PlusIcon, HeartIcon } from "@heroicons/react/solid";
 import logo from "img/logo.svg";
+import { useSelector } from "react-redux";
 import DownloadApp from "./Sidebar/DownloadApp";
 import Menu from "./Sidebar/Menu";
 import Playlists from "./Sidebar/Playlists";
+import SidebarCover from "./Sidebar/SidebarCover";
 
 const Sidebar = () => {
+  const sidebar = useSelector((state) => state.player.sidebar);
+
   return (
     <aside className="w-60 pt-6 flex flex-col flex-shrink-0 bg-black">
       <a href="#" className="mb-5 px-6">
@@ -39,6 +43,7 @@ const Sidebar = () => {
       </nav>
       <Playlists />
       <DownloadApp />
+      {sidebar && <SidebarCover />}
     </aside>
   );
 };

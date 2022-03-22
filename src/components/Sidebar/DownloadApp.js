@@ -7,7 +7,7 @@ const DownloadApp = () => {
       className="h-10 flex-shrink-0 text-sm font-semibold text-link hover:text-white flex items-center px-6 gap-x-4"
     >
       <ArrowCircleDownIcon className="w-5 h-5" />
-      Uygulamayı Yüklee
+      Uygulamayı Yükle
     </a>
   );
 };
