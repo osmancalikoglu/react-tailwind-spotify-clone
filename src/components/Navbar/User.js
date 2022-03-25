@@ -8,7 +8,7 @@ const User = () => {
     avatar: "https://avatars.githubusercontent.com/u/27975582?v=4",
   };
   return (
-    <Menu as="nav" className="relative">
+    <Menu as="nav" className="relative z-10">
       {({ open }) => (
         <>
           <Menu.Button

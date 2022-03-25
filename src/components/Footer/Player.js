@@ -1,4 +1,4 @@
-import { useAudio } from "react-use";
+import { useAudio, useFullscreen, useToggle } from "react-use";
 import {
   FastForwardIcon,
   PauseIcon,
@@ -21,11 +21,18 @@ import {
 } from "@heroicons/react/outline";
 import { secondsToTime } from "utils";
 import CustomRange from "components/CustomRange";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setControls, setPlaying, setSidebar } from "stores/player";
+import FullScreenPlayer from "components/FullScreenPlayer";
 
 const Player = () => {
+  const fsRef = useRef(null);
+  const [show, toggle] = useToggle(false);
+  const isFullscreen = useFullscreen(fsRef, show, {
+    onClose: () => toggle(false),
+  });
+
   const { current, sidebar } = useSelector((state) => state.player);
   const dispatch = useDispatch();
 
@@ -155,9 +162,22 @@ const Player = () => {
             }}
           />
         </div>
-        <button className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100">
+        <button
+          onClick={toggle}
+          className="w-8 h-8 flex items-center justify-center text-white text-opacity-70 hover:text-opacity-100"
+        >
           <ArrowsExpandIcon className="w-4 h-4" />
         </button>
+      </div>
+      <div ref={fsRef}>
+        {isFullscreen && (
+          <FullScreenPlayer
+            toggle={toggle}
+            state={state}
+            controls={controls}
+            volumeIcon={volumeIcon}
+          />
+        )}
       </div>
     </div>
   );
